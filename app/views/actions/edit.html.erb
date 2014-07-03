@@ -1,0 +1,17 @@
+<h1>Editing Action #<%= @action.id %></h1>
+
+<form action="/actions/<%= @action.id %>/update">
+  <div>
+    <label for="description">description</label><br />
+    <input id="description" name="description" value="<%= @action.description  %>" type="text" />
+  </div>
+  <div>
+    <label for="user_id">user_id</label><br />
+    <input id="user_id" name="user_id" value="<%= @action.user_id  %>" type="text" />
+  </div>
+  <div>
+    <input type="submit">
+  </div>
+</form>
+
+

@@ -1,0 +1,21 @@
+<h1>Editing Mood #<%= @mood.id %></h1>
+
+<form action="/moods/<%= @mood.id %>/update">
+  <div>
+    <label for="level">level</label><br />
+    <input id="level" name="level" value="<%= @mood.level  %>" type="text" />
+  </div>
+  <div>
+    <label for="user_id">user_id</label><br />
+    <input id="user_id" name="user_id" value="<%= @mood.user_id  %>" type="text" />
+  </div>
+  <div>
+    <label for="action_id">action_id</label><br />
+    <input id="action_id" name="action_id" value="<%= @mood.action_id  %>" type="text" />
+  </div>
+  <div>
+    <input type="submit">
+  </div>
+</form>
+
+

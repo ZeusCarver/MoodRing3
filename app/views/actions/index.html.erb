@@ -1,0 +1,29 @@
+<h1>Actions</h1>
+
+<p><a href="/new_action">Add a New Action</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @actions.each do |action| %>
+    <tr>
+          <td><%= action.description %></td>
+          <td><%= action.user_id %></td>
+          <td><a href="/actions/<%= action.id %>">Show</a>
+        </td>
+      <td><a href="/actions/<%= action.id %>/edit">Edit</a></td>
+      <td><a href="/actions/<%= action.id %>/destroy">Destroy</a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

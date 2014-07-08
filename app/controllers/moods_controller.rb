@@ -1,18 +1,21 @@
 class MoodsController < ApplicationController
 
   def index
-    @moods = Mood.all
     @users = User.all
+    @moods = Mood.all
   end
 
   def show
+    @users = User.all
     @mood = Mood.find_by(id: params[:id])
   end
 
   def new
+    @users = User.all
   end
 
   def create
+    @users = User.all
     @mood = Mood.new
     @mood.level = params[:level]
     @mood.user_id = params[:user_id]
@@ -26,10 +29,12 @@ class MoodsController < ApplicationController
   end
 
   def edit
+    @users = User.all
     @mood = Mood.find_by(id: params[:id])
   end
 
   def update
+    @users = User.all
     @mood = Mood.find_by(id: params[:id])
     @mood.level = params[:level]
     @mood.user_id = params[:user_id]
@@ -43,6 +48,7 @@ class MoodsController < ApplicationController
   end
 
   def destroy
+    @users = User.all
     @mood = Mood.find_by(id: params[:id])
     @mood.destroy
 

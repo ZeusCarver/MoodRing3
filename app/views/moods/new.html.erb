@@ -6,8 +6,12 @@
     <input id="level" name="level" type="text" />
   </div>
   <div>
-    <label for="user_id">user_id</label><br />
-    <input id="user_id" name="user_id" type="text" />
+    <label for="user_id">Select User</label><br />
+    <select id="user_id" name="user_id">
+          <%@users.each do |user|%>
+             <option value="<%=user.id%>"><%=user.name%></option>
+          <% end %>
+    </select>
   </div>
   <div>
     <label for="action_id">action_id</label><br />

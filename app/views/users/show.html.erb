@@ -9,6 +9,13 @@
   <p><%= @user.email %></p>
 </div>
 
+<div> <p><%= @user.name %>'s moods</p> </div>
+
+  <div>
+    <%= bar_chart @chartData %>
+     </div>
+
+
 <a href="/users/<%= @user.id %>/edit">Edit</a> |
 <a href="/users/<%= @user.id %>/destroy">Destroy</a>
 

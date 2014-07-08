@@ -4,6 +4,7 @@
   <title>MoodRing3</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <%= csrf_meta_tags %>
   <script src="http://code.jquery.com/jquery.min.js"></script>
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -60,17 +61,17 @@
         <button type="submit" class="btn btn-default">Search</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Does nothing for now</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Nothing Yet Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Users drop down <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <%@users.each do |user|%>
+            <li><a href="/users/<%=user.id%>"><%=user.name%></a></li>
+            <% end %>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="/new_user">Create a New User</a></li>
           </ul>
         </li>
+        <li><a href="/about">About</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

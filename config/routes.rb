@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # Routes for the home page
   get '/home' => 'application#home'
+  get '/about' => 'application#about'
   # Routes for the Mood resource:
   # CREATE
   get '/new_mood' => 'moods#new'

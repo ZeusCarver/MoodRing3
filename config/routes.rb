@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  # Routes for session login
+  get '/sessions/new' => 'sessions#new'
+  get '/sessions/create' => 'sessions#create'
+  get '/sessions/destroy' => 'sessions#destroy'
   # Routes for the home page
   get '/home' => 'application#home'
   get '/about' => 'application#about'
+  get '/search' => 'application#search'
   # Routes for the Mood resource:
   # CREATE
   get '/new_mood' => 'moods#new'

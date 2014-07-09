@@ -1,0 +1,16 @@
+
+<h1> Sign In </h1>
+<form action="/sessions/create">
+  <label for="username"> Username </label>
+  <input type="text" id="username" placeholder="Your username here" name="username">
+  <div>
+     <%=notice %> 
+    <label for="password">password</label><br />
+    <input id="password" name="password" type="password" />
+  </div>
+  <div>
+    <label for="password_confirmation">password_confirmation</label><br />
+    <input id="password_confirmation" name="password_confirmation" type="password" />
+  </div>
+<input type="submit" name="Submit">
+         </form>

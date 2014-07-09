@@ -11,6 +11,7 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -27,12 +28,22 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li> <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+
+        <li>
+<!-- Button trigger modal.
+START CONDITIONAL LOGIC FOR WHICH MODAL TO DISPLAY CREATE A NEW USER MODAL, HOW ARE YOU FEELING MODAL-->
+<%if session['user_id']%>
+<% u = User.find_by_id(session['user_id']) %>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#NewMood">
+  How are you feeling?
+</button>
+          <%else%>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#NewUser">
   Create New User
 </button>
+          <%end%>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -43,7 +54,10 @@
         <form name="input" action="/create_user">
  <input type="string" name="name" placeholder="Type your name here">
  <input type="string" name="email" placeholder="Type your email here">
-<input type="submit" value="Submit">
+ <input id="password" name="password" type="password" placeholder="Password">
+ <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Password Confirmation">
+
+  <input type="submit" value="Submit">
 </form>
       </div>
       <div class="modal-footer">
@@ -51,12 +65,55 @@
       </div>
     </div>
   </div>
-</div></li>
+</div>
+<!--   end New User Modal         -->
+<!--    New Mood modal        -->
+          <!-- Modal -->
+<div class="modal fade" id="NewMood" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cancel</span></button>
+        <h4 class="modal-title" id="myModalLabel">New Mood</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/create_mood">
+  <div>
+    <label for="level">level</label><br />
+    <input id="level" name="level" type="text" />
+  </div>
+  <div>
+    <label for="user_id">Select User</label><br />
+    <select id="user_id" name="user_id">
+          <%@users.each do |user|%>
+             <option value="<%=user.id%>"><%=user.name%></option>
+          <% end %>
+    </select>
+  </div>
+  <div>
+<!--     <select> INSERT DROPDOWN FOR SELECTING ACTION OR CREATING A NEW ONE copy from the USERS drop down in the nav -->
+    <label for="action_id">action_id</label><br />
+    <input id="action_id" name="action_id" type="text" />
+<!--     </select> -->
+  </div>
+  <div>
+    <input type="submit">
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--    End New Mood modal        -->
+        </li>
         <li><a href="/moods">See All Moods</a></li>
       </ul>
       <form class="navbar-form navbar-left" action="/search">
         <div class="form-group">
-          <input type="id" class="form-control" name="id" placeholder="Enter profile ID">
+          <input type="search" class="form-control" name="search" placeholder="Name, Level, or Description">
         </div>
         <button type="submit" class="btn btn-default">Search</button>
       </form>
@@ -72,6 +129,15 @@
           </ul>
         </li>
         <li><a href="/about">About</a></li>
+        <li>
+          <%if session['user_id']%>
+          <% u = User.find_by_id(session['user_id']) %>
+          You're signed in, <%= u.name %>
+          <a href="/sessions/destroy"> Sign Out </a>
+      <%else%>
+          <a href="/sessions/new"> Sign In </a>
+      <%end%>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

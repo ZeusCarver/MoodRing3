@@ -1,3 +1,4 @@
+<%= notice %>
 <h1>User #<%= @user.id %></h1>
 
 <div>
@@ -10,41 +11,51 @@
 </div>
 
 <div> <p><%= @user.name %>'s moods</p> </div>
-
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#NewMood">
+  How are you feeling now?
+</button>
+<!-- Modal -->
+<div class="modal fade" id="NewMood" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cancel</span></button>
+        <h4 class="modal-title" id="myModalLabel">New Mood</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/create_mood">
+  <div>
+    <label for="level">level</label><br />
+    <input id="level" name="level" type="text" />
+  </div>
+  <div>
+    <label for="user_id">Select User</label><br />
+    <select id="user_id" name="user_id">
+          <%@users.each do |user|%>
+             <option value="<%=user.id%>"><%=user.name%></option>
+          <% end %>
+    </select>
+  </div>
+  <div>
+<!--     <select> INSERT DROPDOWN FOR SELECTING ACTION OR CREATING A NEW ONE copy from the USERS drop down in the nav -->
+    <label for="action_id">action_id</label><br />
+    <input id="action_id" name="action_id" type="text" />
+<!--     </select> -->
+  </div>
+  <div>
+    <input type="submit">
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
   <div>
     <%= bar_chart @chartData %>
      </div>
-
-
-<a href="/users/<%= @user.id %>/edit">Edit</a> |
+<a href="/users/<%= @user.id %>/edit">Edit</a>
 <a href="/users/<%= @user.id %>/destroy">Destroy</a>
-
-<div class="container">
-   <div class="row">
-     <div class="col-md-4">
-       <div class="thumbnail">
-        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSKnEftL0s1WdMclajZXUoI3TJrvORV1xu0-cr6qMdbbDqGzOesl1nwIw" alt="profile picture">
-        <div class="caption">
-          <p><strong><%=@user.name%>'s moods</strong></p>
-    <%@user.moods.each do |mood|%>
-          <p><%=mood.level%>0%</p>
-        <div class="progress">
-     <%if mood.level == 0 or mood.level == 1 or mood.level== 2 or mood.level == 3%>
-          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<%=mood.level%>0" aria-valuemin="0" aria-valuemax="100" style="width:<%=mood.level%>0%">
-     <%elsif mood.level == 4 or mood.level == 5 or mood.level== 6%>
-    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=mood.level%>0" aria-valuemin="0" aria-valuemax="100" style="width:<%=mood.level%>0%">
-<%else%>
-<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%=mood.level%>0" aria-valuemin="0" aria-valuemax="100" style="width:<%=mood.level%>0%">
-<%end%>
-
-  </div>
-</div>
-          <p><a href="/users/<%=@user.id%>/edit" class="btn btn-primary" role="button">Edit</a> </p>
-        </div>
-<%end%>
-      </div>
-     </div>
-
-    </div>
-</div>
-

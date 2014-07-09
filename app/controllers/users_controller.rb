@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
-
+  before_action: check_if_signed_in only: ['show', 'edit', 'update', 'destroy']
+  def check_if_signed_in
+    if session[:user_id] != params[:id].to_i
+      redirect_to "/sessions/new"
+    end
+  end
   def index
     @users = User.all
   end
@@ -7,10 +12,12 @@ class UsersController < ApplicationController
   def show
     @users = User.all
     @user = User.find_by(id: params[:id])
-    @chartData = {}
-    for i in @user.moods
-      key = i.created_at.strftime("%A at %I:%M:%S%p")
-      @chartData[key] = i.level
+
+      @chartData = {}
+        for i in @user.moods
+          key = i.created_at.strftime("%A at %I:%M:%S%p")
+          @chartData[key] = i.level
+
     end
     # @chartData = {Alex: 5, Frank: 8, "Lisa"=>nil, "Martha"=>nil, "Olga"=>nil, "Willy"=>nil}
     # @chartData["Alex"] = 5
@@ -25,7 +32,8 @@ class UsersController < ApplicationController
     @user = User.new
     @user.name = params[:name]
     @user.email = params[:email]
-
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
     if @user.save
       redirect_to "/users/#{ @user.id }"
     else
@@ -36,6 +44,7 @@ class UsersController < ApplicationController
   def edit
     @users = User.all
     @user = User.find_by(id: params[:id])
+
   end
 
   def update
@@ -43,6 +52,8 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
 
     if @user.save
       redirect_to "/users/#{ @user.id }"

@@ -1,23 +1,10 @@
 <h1> Average Moods by User </h1>
 
   <div>
-
     <%= bar_chart User.includes(:moods).group(:name).average(:level) %>
+</div>
 
-     </div>
-
-<h2>Raw</h2>
-<p>
-    <%= User.includes(:moods).group(:name).average(:level) %>
-</p>
-
-<h2>Faked</h2>
-<p>
-    <%= bar_chart @chartData %>
-</p>
-
-<h1>Old Moods</h1>
-
+<h1>Moods Admin Only</h1>
 <p><a href="/new_mood">Add a New Mood</a></p>
 
 <table>

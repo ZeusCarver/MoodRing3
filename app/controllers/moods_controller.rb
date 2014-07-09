@@ -22,7 +22,7 @@ class MoodsController < ApplicationController
     @mood.action_id = params[:action_id]
 
     if @mood.save
-      redirect_to "/moods/#{ @mood.id }"
+      redirect_to "/users/#{@mood.user_id}"
     else
       render 'new'
     end

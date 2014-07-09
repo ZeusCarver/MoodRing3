@@ -1,0 +1,84 @@
+<h1>Users</h1>
+<p><a href="/new_user">Add a New User</a></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><a href="/users/<%= user.id %>">Show</a>
+        </td>
+      <td><a href="/users/<%= user.id %>/edit">Edit</a></td>
+      <td><a href="/users/<%= user.id %>/destroy">Destroy</a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<h1> Moods </h1>
+
+<p><a href="/new_mood">Add a New Mood</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Level</th>
+      <th>User</th>
+      <th>Action</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @moods.each do |mood| %>
+    <tr>
+          <td><%= mood.level %></td>
+          <td><%= mood.user_id %></td>
+          <td><%= mood.action_id %></td>
+          <td><a href="/moods/<%= mood.id %>">Show</a>
+        </td>
+      <td><a href="/moods/<%= mood.id %>/edit">Edit</a></td>
+      <td><a href="/moods/<%= mood.id %>/destroy">Destroy</a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h1>Actions</h1>
+
+<p><a href="/new_action">Add a New Action</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @actions.each do |action| %>
+    <tr>
+          <td><%= action.description %></td>
+          <td><%= action.user_id %></td>
+          <td><a href="/actions/<%= action.id %>">Show</a>
+        </td>
+      <td><a href="/actions/<%= action.id %>/edit">Edit</a></td>
+      <td><a href="/actions/<%= action.id %>/destroy">Destroy</a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

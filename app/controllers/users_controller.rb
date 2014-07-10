@@ -13,7 +13,9 @@ class UsersController < ApplicationController
   def show
     @users = User.all
     @user = User.find_by(id: params[:id])
-
+    if session[:user_id] != params[:id].to_i
+      redirect_to "/sessions/new"
+    end
       @chartData = {}
       for i in @user.moods
           key = i.created_at.strftime("%A at %I:%M:%S%p")

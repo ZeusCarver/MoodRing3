@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action: check_if_signed_in only: ['show', 'edit', 'update', 'destroy']
+#   before_action: check_if_signed_in only: ['show', 'edit', 'update', 'destroy']
+
   def check_if_signed_in
     if session[:user_id] != params[:id].to_i
       redirect_to "/sessions/new"
@@ -14,11 +15,11 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
 
       @chartData = {}
-        for i in @user.moods
+      for i in @user.moods
           key = i.created_at.strftime("%A at %I:%M:%S%p")
           @chartData[key] = i.level
 
-    end
+      end
     # @chartData = {Alex: 5, Frank: 8, "Lisa"=>nil, "Martha"=>nil, "Olga"=>nil, "Willy"=>nil}
     # @chartData["Alex"] = 5
   end

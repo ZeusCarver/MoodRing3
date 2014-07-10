@@ -2,13 +2,13 @@
 <html>
 <head>
   <title>MoodRing3</title>
+   <script src="http://code.jquery.com/jquery.min.js"></script>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <%= csrf_meta_tags %>
-  <script src="http://code.jquery.com/jquery.min.js"></script>
-  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -140,10 +140,38 @@ START CONDITIONAL LOGIC FOR WHICH MODAL TO DISPLAY CREATE A NEW USER MODAL, HOW 
           You're signed in, <%= u.name %>
           <a href="/sessions/destroy"> Sign Out </a>
       <%else%>
-          <a href="/sessions/new"> Sign In </a>
+          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SignIn">
+Sign In
+      </button>
       <%end%>
         </li>
       </ul>
+      <!-- Sign In Modal -->
+<div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cancel</span></button>
+        <h4 class="modal-title" id="SignInLabel">SignIn</h4>
+      </div>
+      <div class="modal-body">
+        <form align="center" action="/sessions/create">
+  <label for="username"> Username </label>
+  <input type="text" id="username" placeholder="Your username here" name="username">
+  <div>
+    <p class="notice"> <%=notice %> </p>
+    <label for="password">password</label>
+    <input id="password" name="password" type="password" />
+  </div>
+<input type="submit" name="Submit">
+         </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

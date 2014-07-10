@@ -47,7 +47,9 @@ class UsersController < ApplicationController
   def edit
     @users = User.all
     @user = User.find_by(id: params[:id])
-
+    if session[:user_id] != params[:id].to_i
+      redirect_to "/sessions/new"
+    end
   end
 
   def update
@@ -66,10 +68,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if session[:user_id] == 1
     @user = User.find_by(id: params[:id])
     @user.destroy
-
-
+    else
     redirect_to "/users"
+    end
   end
 end

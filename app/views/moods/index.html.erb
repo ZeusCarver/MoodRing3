@@ -3,7 +3,7 @@
   <div>
     <%= bar_chart User.includes(:moods).group(:name).average(:level) %>
 </div>
-
+<% if session[:user_id] == 1 %>
 <h1>Moods Admin Only</h1>
 <p><a href="/new_mood">Add a New Mood</a></p>
 
@@ -33,4 +33,4 @@
   <% end %>
   </tbody>
 </table>
-
+<% end %>

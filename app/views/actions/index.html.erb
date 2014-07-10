@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
+      <th>Action #</th>
       <th>Description</th>
       <th>User</th>
-      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -16,7 +16,8 @@
   <tbody>
   <% @actions.each do |action| %>
     <tr>
-          <td><%= action.description %></td>
+      <td><%= action.id %></td>
+      <td><%= action.description %></td>
           <td><%= action.user_id %></td>
           <td><a href="/actions/<%= action.id %>">Show</a>
         </td>

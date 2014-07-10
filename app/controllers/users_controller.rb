@@ -16,12 +16,12 @@ class UsersController < ApplicationController
     if session[:user_id] != params[:id].to_i
       redirect_to "/sessions/new"
     end
-      @chartData = {}
-      for i in @user.moods
-          key = i.created_at.strftime("%A at %I:%M:%S%p")
-          @chartData[key] = i.level
+    @chartData = {}
+    for i in @user.moods
+      key = i.created_at.strftime("%A at %I:%M:%S%p")
+      @chartData[key] = i.level
 
-      end
+    end
     # @chartData = {Alex: 5, Frank: 8, "Lisa"=>nil, "Martha"=>nil, "Olga"=>nil, "Willy"=>nil}
     # @chartData["Alex"] = 5
   end

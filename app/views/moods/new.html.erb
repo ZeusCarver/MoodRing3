@@ -2,11 +2,11 @@
 
 <form action="/create_mood">
   <div>
-    <label for="level">level</label><br />
+    <label for="level">How are you feeling? (On a scale of 1-10)</label><br />
     <input id="level" name="level" type="text" />
   </div>
   <div>
-    <label for="user_id">Select User</label><br />
+    <label for="user_id">Who are you?</label><br />
     <select id="user_id" name="user_id">
           <%@users.each do |user|%>
              <option value="<%=user.id%>"><%=user.name%></option>
@@ -14,8 +14,13 @@
     </select>
   </div>
   <div>
-    <label for="action_id">action_id</label><br />
-    <input id="action_id" name="action_id" type="text" />
+    <label for="action_id">What are you doing?</label><br />
+    <select id="action_id" name="action_id">
+      <%Action.all.each do |action|%>
+      <option value="<%=action.id%>"><%=action.description%></option>
+      <% end %>
+    </select>
+
   </div>
   <div>
     <input type="submit">

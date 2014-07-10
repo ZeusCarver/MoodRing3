@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 # Charts from gruff
 gem 'gruff', '~> 0.5.1'
 # Groupdate from same people as chartkick
-gem 'groupdate', :git => 'https://github.com/ankane/groupdate.git'
+gem 'groupdate'
 # Charts from chartkick
 gem 'chartkick', '~> 1.3.2'
 # Starter generators from Arjun's github

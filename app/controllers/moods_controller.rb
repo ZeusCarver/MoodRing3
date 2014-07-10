@@ -3,6 +3,12 @@ class MoodsController < ApplicationController
   def index
     @users = User.all
     @moods = Mood.all
+#     @chartData = {}
+#     for i in @user.moods
+#       key = i.created_at.strftime("%A at %I:%M:%S%p")
+#       @chartData[key] = i.level
+
+#     end
   end
 
   def show
@@ -16,6 +22,7 @@ class MoodsController < ApplicationController
 
   def create
     @users = User.all
+    @actions = Action.all
     @mood = Mood.new
     @mood.level = params[:level]
     @mood.user_id = params[:user_id]

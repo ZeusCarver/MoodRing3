@@ -1,8 +1,15 @@
-<h1> Average Moods by User </h1>
+<h2> Average Moods by User </h2>
 
   <div>
     <%= bar_chart User.includes(:moods).group(:name).average(:level) %>
-</div>
+  </div>
+<h2> Average Moods by Action description </h2>
+  <div>
+    <%= bar_chart Action.includes(:moods).group(:description).average(:level) %>
+  </div>
+<h2> Average Moods by Day</h2>
+<div> <%= line_chart Mood.group_by_day(:created_at).count %></div>
+
 <% if session[:user_id] == 1 %>
 <h1>Moods Admin Only</h1>
 <p><a href="/new_mood">Add a New Mood</a></p>

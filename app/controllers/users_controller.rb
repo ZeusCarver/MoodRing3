@@ -38,6 +38,7 @@ class UsersController < ApplicationController
     @user.password = params[:password]
     @user.password_confirmation = params[:password_confirmation]
     if @user.save
+      session['user_id'] = @user.id
       redirect_to "/users/#{ @user.id }"
     else
       render 'new'

@@ -140,7 +140,7 @@ START CONDITIONAL LOGIC FOR WHICH MODAL TO DISPLAY CREATE A NEW USER MODAL, HOW 
           You're signed in, <%= u.name %>
           <a href="/sessions/destroy"> Sign Out </a>
       <%else%>
-          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SignIn">
+          <button style="line-height:32px" class="btn btn-primary btn-md" data-toggle="modal" data-target="#SignIn">
 Sign In
       </button>
       <%end%>
@@ -152,7 +152,7 @@ Sign In
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cancel</span></button>
-        <h4 class="modal-title" id="SignInLabel">SignIn</h4>
+        <h4 class="modal-title" id="SignInLabel">Sign In</h4>
       </div>
       <div class="modal-body">
         <form align="center" action="/sessions/create">
